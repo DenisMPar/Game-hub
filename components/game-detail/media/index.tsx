@@ -23,7 +23,7 @@ export function GameDetailMedia({ screenshots }: Props) {
               <Image
                 className={classes.game_detail_media__image}
                 fill
-                src={`https:${screenshot.url.replace("t_thumb", "t_logo_med")}`}
+                src={`https:${screenshot.url.replace("t_thumb", "t_screenshot_big")}`}
                 alt="game screenshot"
                 sizes="(max-width: 768px) 20vw, 30vw"
               />

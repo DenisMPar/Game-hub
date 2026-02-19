@@ -3,8 +3,13 @@ import { NextRequest } from "next/server";
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const queryParam = searchParams.get("query");
-  const headers = req.headers;
-  const authHeader = headers.get("authorization");
+
+  if (!queryParam) {
+    return Response.json({ error: "Missing query parameter" }, { status: 400 });
+  }
+
+  const sanitized = queryParam.replace(/[^a-zA-Z0-9\s\-':]/g, "");
+  const authHeader = req.headers.get("authorization");
   const config = {
     method: "POST",
     headers: {
@@ -12,7 +17,7 @@ export async function GET(req: NextRequest) {
       Authorization: authHeader || "",
       "Content-Type": "text/plain",
     },
-    body: `fields name,cover.url,slug; search "${queryParam}"; limit 10;`,
+    body: `fields name,cover.url,slug; search "${sanitized}"; limit 10;`,
   };
   const res = await fetch("https://api.igdb.com/v4/games", config);
   const data = await res.json();

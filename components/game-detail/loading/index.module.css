@@ -2,6 +2,10 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  max-width: 728px;
+  width: 100%;
+  margin: 0 auto;
+  flex-grow: 1;
 }
 .game_detail_loading__header_container {
   display: grid;
