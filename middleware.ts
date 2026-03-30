@@ -1,4 +1,4 @@
-import { AccessDataType, getAccessData, setAccessData } from "@/lib/igdb-token";
+import { AccessDataType, getAccessData, refreshAccessData } from "@/lib/igdb-token";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
@@ -6,7 +6,7 @@ export async function middleware(request: NextRequest) {
   const allowedOrigin =
     process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
-  if (origin && origin !== allowedOrigin) {
+  if (!origin || origin !== allowedOrigin) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
@@ -15,9 +15,8 @@ export async function middleware(request: NextRequest) {
     accessData &&
     Date.now() > accessData.timestamp + accessData.expires_in * 1000;
   if (!accessData || isExpired) {
-    const newAccessData = await fetchNewAccessToken();
+    const newAccessData = await refreshAccessData(fetchNewAccessToken);
     if (newAccessData) {
-      setAccessData(newAccessData);
       accessData = newAccessData;
     } else {
       return NextResponse.error();

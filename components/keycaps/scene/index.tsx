@@ -1,4 +1,4 @@
-import { useResizeDetection } from "@/hooks";
+import { useIsMobile, useResizeDetection } from "@/hooks";
 import { useThree } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import { useEffect } from "react";
@@ -9,7 +9,7 @@ import { Lights } from "./lights";
 export function Scene() {
   const { camera } = useThree();
   const { isResizing } = useResizeDetection();
-  const isMobile = window.innerWidth < 768;
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (!isMobile) {

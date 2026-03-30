@@ -1,9 +1,10 @@
+import { useIsMobile } from "@/hooks";
 import { useThree } from "@react-three/fiber";
 import { CuboidCollider } from "@react-three/rapier";
 
 export function CollidersScene() {
   const { viewport } = useThree();
-  const isMobile = window.innerWidth < 768;
+  const isMobile = useIsMobile();
   const responsiveRatio = viewport.width / 15;
   const minFrontColliderPosition = 0.9;
   const frontColliderMobilePosition = Math.max(

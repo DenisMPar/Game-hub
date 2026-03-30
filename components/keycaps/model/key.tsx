@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useIsMobile } from "@/hooks";
 import { useGLTF } from "@react-three/drei";
 import { GroupProps, useThree } from "@react-three/fiber";
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
@@ -22,7 +23,7 @@ export function KeyModel({ variant, ...props }: KeyProps) {
   const { nodes, materials }: any = useGLTF(modelDictionary[variant]);
   const keyRef = useRef<RapierRigidBody | null>(null);
   const { viewport } = useThree();
-  const isMobile = window.innerWidth < 768;
+  const isMobile = useIsMobile();
   const responsiveRatio = viewport.width / 15;
   const minimumScale = 0.6;
   const responsiveValue = 0.6 * responsiveRatio;

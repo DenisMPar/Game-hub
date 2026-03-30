@@ -1,4 +1,20 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+export function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleResize = useCallback(() => {
+    setIsMobile(window.innerWidth < breakpoint);
+  }, [breakpoint]);
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [handleResize]);
+
+  return isMobile;
+}
 
 export function useResizeDetection(debounceDelay = 100) {
   const [isResizing, setIsResizing] = useState(false);

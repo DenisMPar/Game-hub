@@ -19,8 +19,17 @@ export async function GET(req: NextRequest) {
     },
     body: `fields name,cover.url,slug; search "${sanitized}"; limit 10;`,
   };
-  const res = await fetch("https://api.igdb.com/v4/games", config);
-  const data = await res.json();
-
-  return Response.json(data);
+  try {
+    const res = await fetch("https://api.igdb.com/v4/games", config);
+    if (!res.ok) {
+      return Response.json(
+        { error: "Failed to fetch games" },
+        { status: res.status }
+      );
+    }
+    const data = await res.json();
+    return Response.json(data);
+  } catch {
+    return Response.json({ error: "Internal server error" }, { status: 500 });
+  }
 }

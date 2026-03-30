@@ -20,8 +20,17 @@ export async function GET(
     },
     body: `fields name,slug,cover.url,first_release_date,involved_companies.company.name,platforms.name,rating,screenshots.url,summary,genres.name,similar_games.cover.url,similar_games.slug,similar_games.name; where slug = "${slug}";`,
   };
-  const res = await fetch("https://api.igdb.com/v4/games", config);
-  const data = await res.json();
-
-  return Response.json({ data });
+  try {
+    const res = await fetch("https://api.igdb.com/v4/games", config);
+    if (!res.ok) {
+      return Response.json(
+        { error: "Failed to fetch game details" },
+        { status: res.status }
+      );
+    }
+    const data = await res.json();
+    return Response.json({ data });
+  } catch {
+    return Response.json({ error: "Internal server error" }, { status: 500 });
+  }
 }
