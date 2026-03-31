@@ -11,9 +11,10 @@ export async function middleware(request: NextRequest) {
   }
 
   let accessData = getAccessData();
+  const EXPIRY_BUFFER_MS = 5 * 60 * 1000;
   const isExpired =
     accessData &&
-    Date.now() > accessData.timestamp + accessData.expires_in * 1000;
+    Date.now() > accessData.timestamp + accessData.expires_in * 1000 - EXPIRY_BUFFER_MS;
   if (!accessData || isExpired) {
     const newAccessData = await refreshAccessData(fetchNewAccessToken);
     if (newAccessData) {
@@ -34,12 +35,22 @@ export async function middleware(request: NextRequest) {
 }
 
 async function fetchNewAccessToken(): Promise<AccessDataType | null> {
+  const clientId = process.env.API_CLIENT_ID;
+  const clientSecret = process.env.API_CLIENT_SECRET;
+
+  if (!clientId || !clientSecret) {
+    console.error(
+      "Missing required environment variables: API_CLIENT_ID and/or API_CLIENT_SECRET"
+    );
+    return null;
+  }
+
   const res = await fetch("https://id.twitch.tv/oauth2/token", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
-      client_id: process.env.API_CLIENT_ID || "",
-      client_secret: process.env.API_CLIENT_SECRET || "",
+      client_id: clientId,
+      client_secret: clientSecret,
       grant_type: "client_credentials",
     }),
   });

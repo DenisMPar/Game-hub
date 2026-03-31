@@ -3,11 +3,6 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import classes from "./layout.module.css";
 import { Keycaps } from "@/components/keycaps";
-import { Metadata } from "next";
-export const metadata: Metadata = {
-  title: "Game Haven Z - Game",
-  description: "Search and collect your favourite games",
-};
 export default function GameLayout({
   children,
 }: {
