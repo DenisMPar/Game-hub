@@ -23,18 +23,19 @@ export function SearchGames() {
   const [isLoading, setLoading] = React.useState(false);
   const [options, setOptions] = React.useState<readonly GameType[]>([]);
   const { toast } = useToast();
+  const toastRef = React.useRef(toast);
+  toastRef.current = toast;
 
-  const fetcher = React.useMemo(
+  const debouncedFetch = React.useMemo(
     () =>
       debounce(async (input: string) => {
-        if (!input) return;
         setLoading(true);
         try {
           const res = await fetchApiGet(`/game?query=${input}`);
           setOptions(res || []);
         } catch (error) {
-          console.log("error on fetch :(", error);
-          toast({
+          console.error("Error on search:", error);
+          toastRef.current({
             title: "Error on search",
             description: "An error occurred while searching for games.",
             variant: "destructive",
@@ -47,8 +48,8 @@ export function SearchGames() {
   );
 
   React.useEffect(() => {
-    fetcher(inputValue);
-  }, [inputValue, fetcher]);
+    return () => debouncedFetch.clear();
+  }, [debouncedFetch]);
 
   return (
     <Autocomplete
@@ -67,7 +68,15 @@ export function SearchGames() {
       loadingText="Searching games..."
       loading={isLoading}
       onChange={() => {}}
-      onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
+      onInputChange={(event, newInputValue) => {
+        setInputValue(newInputValue);
+        if (newInputValue) {
+          debouncedFetch(newInputValue);
+        } else {
+          debouncedFetch.clear();
+          setOptions([]);
+        }
+      }}
       renderInput={(params) => (
         <SearchInput
           params={params}
