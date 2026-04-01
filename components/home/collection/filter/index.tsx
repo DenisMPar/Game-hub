@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import classes from "./index.module.css";
 export function SortGames() {
   const collection = useGameCollectionStore((state) => state.collection);
-  const hydratated = useGameCollectionStore((state) => state.hydrated);
+  const hydrated = useGameCollectionStore((state) => state.hydrated);
   const sortByLastAdded = useGameCollectionStore(
     (state) => state.sortByLastAdded
   );
@@ -19,7 +19,7 @@ export function SortGames() {
   const [selected, setSelected] = useState<"lastAdded" | "newest" | "oldest">(
     "lastAdded"
   );
-  const collectionIsLoading = hydratated === false;
+  const collectionIsLoading = hydrated === false;
   const collectionIsEmpty = collection.length === 0 && !collectionIsLoading;
 
   useEffect(() => {

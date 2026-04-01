@@ -3,10 +3,14 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
   const origin = request.headers.get("origin");
+  const referer = request.headers.get("referer");
   const allowedOrigin =
     process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
-  if (!origin || origin !== allowedOrigin) {
+  const isCrossOrigin = origin && origin !== allowedOrigin;
+  const hasSuspiciousReferer = referer && !referer.startsWith(allowedOrigin);
+
+  if (isCrossOrigin || hasSuspiciousReferer) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 

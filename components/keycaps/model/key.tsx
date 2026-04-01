@@ -76,10 +76,8 @@ export function KeyModel({ variant, ...props }: KeyProps) {
   );
 }
 
+// Only preload keys shared across all devices; desktop-only keys (c, v, ctrl) load on demand
 useGLTF.preload("/w-key.glb");
 useGLTF.preload("/a-key.glb");
 useGLTF.preload("/s-key.glb");
 useGLTF.preload("/d-key.glb");
-useGLTF.preload("/c-key.glb");
-useGLTF.preload("/v-key.glb");
-useGLTF.preload("/ctrl-key.glb");

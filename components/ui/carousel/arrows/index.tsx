@@ -4,7 +4,8 @@ import { CustomArrowProps } from "react-slick";
 export function RightArrow(props: CustomArrowProps) {
   const { onClick } = props;
   return (
-    <div
+    <button
+      aria-label="Next slide"
       style={{
         position: "absolute",
         top: "50%",
@@ -21,17 +22,19 @@ export function RightArrow(props: CustomArrowProps) {
         cursor: "pointer",
         height: 40,
         width: 40,
+        padding: 0,
       }}
       onClick={onClick}
     >
       <ChevronRight />
-    </div>
+    </button>
   );
 }
 export function LeftArrow(props: CustomArrowProps) {
   const { onClick } = props;
   return (
-    <div
+    <button
+      aria-label="Previous slide"
       style={{
         position: "absolute",
         top: "50%",
@@ -48,12 +51,12 @@ export function LeftArrow(props: CustomArrowProps) {
         cursor: "pointer",
         height: 40,
         width: 40,
-
+        padding: 0,
         zIndex: 1,
       }}
       onClick={onClick}
     >
       <ChevronLeft />
-    </div>
+    </button>
   );
 }

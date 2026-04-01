@@ -13,7 +13,7 @@ export async function fetchApiGet(path: RequestInfo) {
   });
   const status = res.status;
   const resJson = await res.json();
-  if (status >= 400) throw new Error(resJson.message);
+  if (status >= 400) throw new Error(resJson?.message || "Request failed");
   if (status >= 200 && status < 300) return resJson;
 }
 
@@ -61,9 +61,9 @@ export interface GameDetail {
 export async function getGameDetails(slug: string): Promise<GameDetail | null> {
   try {
     const res = await fetchApiGet(`/game/${slug}`);
-    return res.data[0];
+    return res?.data?.[0] ?? null;
   } catch (error) {
-    console.log("error on fetch :(", error);
+    console.error("Error fetching game details:", error);
     return null;
   }
 }
