@@ -32,7 +32,7 @@ export function SearchGames() {
         setLoading(true);
         try {
           const res = await fetchApiGet(`/game?query=${input}`);
-          setOptions(res || []);
+          setOptions(res?.data || []);
         } catch (error) {
           console.error("Error on search:", error);
           toastRef.current({

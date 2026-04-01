@@ -1,9 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useIsMobile } from "@/hooks";
 import { useGLTF } from "@react-three/drei";
 import { GroupProps, useThree } from "@react-three/fiber";
 import { RapierRigidBody, RigidBody } from "@react-three/rapier";
 import { useRef } from "react";
+import { Mesh, MeshStandardMaterial } from "three";
+import { GLTF } from "three-stdlib";
 import { degToRad } from "three/src/math/MathUtils.js";
 type KeyVariant = "w" | "a" | "s" | "d" | "c" | "v" | "ctrl";
 
@@ -19,8 +20,13 @@ const modelDictionary = {
   v: "/v-key.glb",
   ctrl: "/ctrl-key.glb",
 };
+interface KeyGLTF extends GLTF {
+  nodes: { Cube: Mesh };
+  materials: { Material: MeshStandardMaterial };
+}
+
 export function KeyModel({ variant, ...props }: KeyProps) {
-  const { nodes, materials }: any = useGLTF(modelDictionary[variant]);
+  const { nodes, materials } = useGLTF(modelDictionary[variant]) as KeyGLTF;
   const keyRef = useRef<RapierRigidBody | null>(null);
   const { viewport } = useThree();
   const isMobile = useIsMobile();
