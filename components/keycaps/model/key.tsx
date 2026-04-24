@@ -26,7 +26,7 @@ interface KeyGLTF extends GLTF {
   materials: Record<string, MeshStandardMaterial>;
 }
 
-export function KeyModel({ variant, ...props }: KeyProps) {
+export function KeyModel({ variant, position }: KeyProps) {
   const { nodes } = useGLTF(modelDictionary[variant]) as KeyGLTF;
   const keyRef = useRef<RapierRigidBody | null>(null);
   const { viewport } = useThree();
@@ -74,7 +74,7 @@ export function KeyModel({ variant, ...props }: KeyProps) {
         colliders="hull"
         restitution={0.3}
         gravityScale={isMobile ? 1 : 2}
-        {...props}
+        position={position}
         rotation={[degToRad(90), degToRad(325), 0]}
         scale={isMobile ? mobileScale : 0.8}
       >
