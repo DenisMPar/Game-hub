@@ -2,15 +2,16 @@
   margin: 0;
 }
 .h1 {
+  font-family: var(--font-orbitron), sans-serif;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 700;
   @media screen and (min-width: 768px) {
     font-size: 24px;
   }
   background: linear-gradient(
     90deg,
-    var(--violet-900) 0%,
-    var(--violet-600) 100%
+    var(--cyan-500) 0%,
+    var(--violet-500) 100%
   );
   -webkit-background-clip: text;
   color: transparent;
@@ -18,17 +19,17 @@
 .h2 {
   font-size: 16px;
   font-weight: 600;
-  color: var(--gray-1000);
+  color: var(--text-primary);
 }
 .h3 {
   font-size: 14px;
   font-weight: 500;
-  color: var(--violet-100);
+  color: var(--text-secondary);
 }
 .h4 {
   font-size: 14px;
   font-weight: 500;
-  color: var(--gray-500);
+  color: var(--text-secondary);
   @media screen and (min-width: 768px) {
     font-size: 16px;
   }
@@ -36,10 +37,10 @@
 
 .h5 {
   font-size: 14px;
-  color: var(--gray-500);
+  color: var(--text-muted);
 }
 .body1 {
   font-size: 14px;
-  color: var(--gray-1000);
+  color: var(--text-primary);
   font-weight: 400;
 }

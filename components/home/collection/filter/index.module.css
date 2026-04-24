@@ -18,10 +18,11 @@
 }
 .sticky {
   top: 20px;
-  background: #ffffffba;
+  background: rgba(10, 10, 15, 0.85);
   backdrop-filter: blur(10px);
   border-radius: 100px;
   margin: 0 auto;
+  border: 1px solid var(--border-default);
 }
 .empty {
   visibility: hidden;

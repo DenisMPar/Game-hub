@@ -30,7 +30,7 @@ export function SearchInput({
             <InputAdornment position="start">
               <Search
                 style={{
-                  color: isFocused ? "var(--violet-600)" : "var(--pink-100)",
+                  color: isFocused ? "var(--cyan-500)" : "var(--text-muted)",
                   width: 16,
                   height: 16,
                 }}
@@ -42,7 +42,7 @@ export function SearchInput({
               <IconButton onClick={handleReset} edge="end">
                 <X
                   style={{
-                    color: "var(--gray-1000)",
+                    color: "var(--text-primary)",
                     width: 16,
                     height: 16,
                   }}
@@ -54,17 +54,21 @@ export function SearchInput({
       }}
       sx={{
         "& .MuiInputBase-root": {
-          backgroundColor: "var(--gray-0)",
+          backgroundColor: "var(--bg-surface)",
           borderRadius: isFocused ? "20px 20px 0 0" : "20px",
           height: "40px",
-          border: "1px solid var(--pink-50)",
+          border: "1px solid var(--border-default)",
           fontFamily: "inherit",
           padding: "12px 16px !important",
           gap: "3px",
           outline: "none",
+          color: "var(--text-primary)",
+        },
+        "& .MuiInputBase-input": {
+          color: "var(--text-primary)",
         },
         "& .MuiInputBase-input::placeholder": {
-          color: "var(--pink-200)",
+          color: "var(--text-muted)",
           opacity: 1,
         },
         "& .MuiInputAdornment-root": {

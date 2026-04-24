@@ -17,7 +17,7 @@
 .layout__back_wrapper {
   display: flex;
   gap: 8px;
-  color: var(--violet-900);
+  color: var(--cyan-500);
   @media screen and (min-width: 768px) {
     position: absolute;
     left: 0;
@@ -26,11 +26,5 @@
 .layout__title {
   font-size: 16px;
   font-weight: 600;
-  background: linear-gradient(
-    90deg,
-    var(--violet-900) 0%,
-    var(--violet-600) 100%
-  );
-  -webkit-background-clip: text;
-  color: transparent;
+  color: var(--cyan-500);
 }

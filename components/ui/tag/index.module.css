@@ -1,12 +1,13 @@
 .tag__root {
-  color: var(--violet-600);
+  color: var(--cyan-500);
   display: flex;
   align-items: center;
   padding: 10px 12px;
-  border: solid 1px var(--violet-50);
+  border: solid 1px var(--border-default);
   gap: 5px;
   height: 36px;
   border-radius: 100px;
+  background: var(--bg-surface);
 }
 .tag__icon_container {
   width: 16px;
@@ -18,10 +19,10 @@
 .tag__title {
   font-size: 14px;
   font-weight: 500;
-  color: var(--violet-600);
+  color: var(--cyan-500);
 }
 .tag__text {
   font-size: 16px;
   font-weight: 500;
-  color: var(--violet-900);
+  color: var(--text-primary);
 }

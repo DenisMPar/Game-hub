@@ -1,10 +1,17 @@
 import { Toaster } from "@/components/ui/toaster";
-import { Inter } from "next/font/google";
+import { Inter, Orbitron } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+  variable: "--font-inter",
+});
+
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-orbitron",
 });
 
 export default function RootLayout({
@@ -27,7 +34,9 @@ export default function RootLayout({
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body
+        className={`${inter.variable} ${orbitron.variable} ${inter.className} antialiased`}
+      >
         <Toaster />
         {children}
       </body>

@@ -12,12 +12,13 @@
   }
 }
 .game_detail_similar__title {
+  font-family: var(--font-orbitron), sans-serif;
   font-size: 16px;
   font-weight: 600;
   background: linear-gradient(
     90deg,
-    var(--violet-900) 0%,
-    var(--violet-600) 100%
+    var(--cyan-500) 0%,
+    var(--violet-500) 100%
   );
   -webkit-background-clip: text;
   color: transparent;

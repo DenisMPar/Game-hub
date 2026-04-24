@@ -7,11 +7,11 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--violet-900);
+  color: var(--text-secondary);
   background: none;
   padding: 6px 12px;
 }
 .active {
-  color: var(--gray-0);
-  background: var(--violet-900);
+  color: var(--bg-primary);
+  background: var(--cyan-500);
 }

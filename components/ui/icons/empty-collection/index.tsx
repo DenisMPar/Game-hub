@@ -21,7 +21,7 @@ export const EmptyCollectionLogo = (props: React.SVGProps<SVGSVGElement>) => (
         height={144.5}
         x={209.956}
         y={8.847}
-        stroke="#D7D7D7"
+        stroke="#2a2a40"
         strokeWidth={1.5}
         rx={11.25}
       />
@@ -40,7 +40,7 @@ export const EmptyCollectionLogo = (props: React.SVGProps<SVGSVGElement>) => (
         height={144.5}
         x={-0.638}
         y={0.847}
-        stroke="#D7D7D7"
+        stroke="#2a2a40"
         strokeWidth={1.5}
         rx={11.25}
       />
@@ -58,26 +58,26 @@ export const EmptyCollectionLogo = (props: React.SVGProps<SVGSVGElement>) => (
       height={166.5}
       x={116.75}
       y={0.75}
-      stroke="#D7D7D7"
+      stroke="#2a2a40"
       strokeWidth={1.5}
       rx={11.25}
     />
     <path
-      stroke="#D7D7D7"
+      stroke="#555570"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.5}
       d="M179 96.333c7.364 0 13.333-5.97 13.333-13.333 0-7.364-5.969-13.333-13.333-13.333S165.666 75.637 165.666 83c0 7.364 5.97 13.333 13.334 13.333Z"
     />
     <path
-      stroke="#D7D7D7"
+      stroke="#555570"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.5}
       d="M184.333 88.333s-2-2.666-5.333-2.666c-3.334 0-5.334 2.666-5.334 2.666"
     />
     <path
-      stroke="#D7D7D7"
+      stroke="#555570"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
@@ -92,8 +92,8 @@ export const EmptyCollectionLogo = (props: React.SVGProps<SVGSVGElement>) => (
         y2={154}
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#fff" />
-        <stop offset={1} stopColor="#E6E6E6" />
+        <stop stopColor="#141420" />
+        <stop offset={1} stopColor="#0a0a0f" />
       </linearGradient>
       <linearGradient
         id="b"
@@ -103,8 +103,8 @@ export const EmptyCollectionLogo = (props: React.SVGProps<SVGSVGElement>) => (
         y2={146}
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#fff" />
-        <stop offset={1} stopColor="#E6E6E6" />
+        <stop stopColor="#141420" />
+        <stop offset={1} stopColor="#0a0a0f" />
       </linearGradient>
       <linearGradient
         id="c"
@@ -114,8 +114,8 @@ export const EmptyCollectionLogo = (props: React.SVGProps<SVGSVGElement>) => (
         y2={168}
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#fff" />
-        <stop offset={1} stopColor="#E6E6E6" />
+        <stop stopColor="#1c1c30" />
+        <stop offset={1} stopColor="#141420" />
       </linearGradient>
     </defs>
   </svg>

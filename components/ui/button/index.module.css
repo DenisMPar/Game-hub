@@ -2,8 +2,8 @@
   height: 40px;
   width: 100%;
   border-radius: 30px;
-  background: var(--violet-900);
-  color: var(--gray-0);
+  background: linear-gradient(135deg, var(--cyan-500), var(--violet-500));
+  color: var(--bg-primary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,16 +13,12 @@
   padding: 6px 9px;
 
   &:hover {
-    background: var(--violet-300);
+    background: linear-gradient(135deg, var(--cyan-400), var(--violet-400));
+    box-shadow: 0 0 20px var(--cyan-glow);
   }
   &:disabled {
-    background: linear-gradient(
-      90deg,
-      var(--violet-900) 0%,
-      var(--violet-600) 100%
-    );
-    -webkit-background-clip: text;
-    color: transparent;
-    border: 1px solid var(--violet-600);
+    background: transparent;
+    color: var(--cyan-500);
+    border: 1px solid var(--cyan-500);
   }
 }
