@@ -14,7 +14,10 @@
     height: 132px !important;
   }
 }
+.game_detail_media__list {
+  display: flex;
+  gap: 8px;
+}
 .game_detail_media__image {
-  width: 132px;
-  height: 132px;
+  object-fit: cover;
 }
