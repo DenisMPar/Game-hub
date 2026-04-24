@@ -41,3 +41,37 @@ export function useResizeDetection(debounceDelay = 100) {
 
   return { isResizing };
 }
+
+export function useRandomVisibility(ready: boolean, visibleDuration = 3000) {
+  const [visible, setVisible] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (!ready) return;
+
+    setVisible(true);
+
+    const scheduleNext = () => {
+      const delay = Math.random() * 5000 + 10000;
+      timeoutRef.current = setTimeout(() => {
+        setVisible(true);
+        timeoutRef.current = setTimeout(() => {
+          setVisible(false);
+          scheduleNext();
+        }, visibleDuration);
+      }, delay);
+    };
+
+    const hideFirst = setTimeout(() => {
+      setVisible(false);
+      scheduleNext();
+    }, visibleDuration);
+
+    return () => {
+      clearTimeout(hideFirst);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [ready, visibleDuration]);
+
+  return visible;
+}

@@ -2,7 +2,11 @@
 import { Canvas } from "@react-three/fiber";
 import { Scene } from "../scene";
 
-export function KeyCapsCanvas() {
+interface KeyCapsCanvasProps {
+  onReady?: () => void;
+}
+
+export function KeyCapsCanvas({ onReady }: KeyCapsCanvasProps) {
   return (
     <Canvas
       orthographic
@@ -10,6 +14,7 @@ export function KeyCapsCanvas() {
         position: [0, 0, 5],
         zoom: 30,
       }}
+      onCreated={onReady}
     >
       <Scene />
     </Canvas>
