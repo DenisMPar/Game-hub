@@ -4,8 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function middleware(request: NextRequest) {
   const origin = request.headers.get("origin");
   const referer = request.headers.get("referer");
-  const allowedOrigin =
-    process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  const allowedOrigin = request.nextUrl.origin;
 
   const isCrossOrigin = origin && origin !== allowedOrigin;
   const hasSuspiciousReferer = referer && !referer.startsWith(allowedOrigin);
