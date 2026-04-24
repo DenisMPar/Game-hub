@@ -1,11 +1,13 @@
+import React from "react";
 import Slider from "react-slick";
 import { LeftArrow, RightArrow } from "./arrows";
 
 export function CarouselComponent({ children }: { children: React.ReactNode }) {
+  const count = React.Children.count(children);
   const settings = {
     dots: false,
-    infinite: true,
-    slidesToShow: 5,
+    infinite: count > 5,
+    slidesToShow: Math.min(count, 5),
     slidesToScroll: 1,
     nextArrow: <RightArrow />,
     prevArrow: <LeftArrow />,
@@ -14,8 +16,8 @@ export function CarouselComponent({ children }: { children: React.ReactNode }) {
         breakpoint: 768,
         settings: {
           dots: false,
-          infinite: true,
-          slidesToShow: 4,
+          infinite: count > 4,
+          slidesToShow: Math.min(count, 4),
           slidesToScroll: 1,
         },
       },
