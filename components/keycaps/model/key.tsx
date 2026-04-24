@@ -32,7 +32,7 @@ export function KeyModel({ variant, ...props }: KeyProps) {
   const { viewport } = useThree();
   const isMobile = useIsMobile();
   const responsiveRatio = viewport.width / 15;
-  const minimumScale = 0.6;
+  const minimumScale = 0.55;
   const responsiveValue = 0.6 * responsiveRatio;
   const mobileScale = Math.max(responsiveValue, minimumScale);
 
@@ -67,19 +67,16 @@ export function KeyModel({ variant, ...props }: KeyProps) {
     }
   }
   return (
-    <group
-      onClick={addImpulse}
-      {...props}
-      dispose={null}
-      rotation={[degToRad(90), degToRad(325), 0]}
-      scale={isMobile ? mobileScale : 0.8}
-    >
+    <group onClick={addImpulse} dispose={null}>
       <RigidBody
         ref={keyRef}
         type="dynamic"
-        colliders="cuboid"
+        colliders="hull"
         restitution={0.3}
         gravityScale={isMobile ? 1 : 2}
+        {...props}
+        rotation={[degToRad(90), degToRad(325), 0]}
+        scale={isMobile ? mobileScale : 0.8}
       >
         {meshEntries.map((mesh) => (
           <mesh
