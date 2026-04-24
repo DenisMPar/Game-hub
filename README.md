@@ -1,6 +1,6 @@
-# GAME HAVEN Z
+# GAME HUB
 
-Find and collect your favourite games.
+Your personal game collection.
 
 ## Technologies
 - [NextJs v14](https://nextjs.org/)
@@ -11,8 +11,7 @@ Find and collect your favourite games.
 - [IGDB (API)](https://api-docs.igdb.com/)
 
 ## Hint
-*The keycaps don't like being clicked, it tickles them!* 🤫
-## Demo
-[Game Haven Z](https://game-haven-nine-gamma.vercel.app/home)
+*The keycaps don't like being clicked, it tickles them!* 
+
 ## Contact
 Denis Parada - [LinkedIn](https://www.linkedin.com/in/denismpar/)

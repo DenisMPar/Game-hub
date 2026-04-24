@@ -9,10 +9,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const gameData = await getGameDetails(params.slug);
   return {
-    title: gameData ? `${gameData.name} - Game Haven Z` : "Game Haven Z - Game",
+    title: gameData ? `${gameData.name} - Game Hub` : "Game Hub",
     description: gameData
       ? `Details, screenshots, and more for ${gameData.name}`
-      : "Search and collect your favourite games",
+      : "Your personal game collection",
   };
 }
 

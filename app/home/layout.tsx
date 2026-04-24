@@ -6,8 +6,8 @@ import { Keycaps } from "@/components/keycaps";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Game Haven Z",
-  description: "Search and collect your favourite games",
+  title: "Game Hub",
+  description: "Your personal game collection",
 };
 
 export default function HomeLayout({
@@ -21,7 +21,7 @@ export default function HomeLayout({
       <header className={classes.layout__header}>
         <div className={classes.layout__title_logo_wrapper}>
           <Logo />
-          <Title1>Gaming Haven Z</Title1>
+          <Title1>Game Hub</Title1>
         </div>
         <SearchGames />
       </header>
