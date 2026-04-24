@@ -27,7 +27,7 @@ interface KeyGLTF extends GLTF {
 }
 
 export function KeyModel({ variant, ...props }: KeyProps) {
-  const { nodes, materials } = useGLTF(modelDictionary[variant]) as KeyGLTF;
+  const { nodes } = useGLTF(modelDictionary[variant]) as KeyGLTF;
   const keyRef = useRef<RapierRigidBody | null>(null);
   const { viewport } = useThree();
   const isMobile = useIsMobile();
