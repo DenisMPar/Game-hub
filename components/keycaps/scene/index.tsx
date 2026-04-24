@@ -20,7 +20,7 @@ export function Scene() {
   return (
     <>
       <Lights />
-      <Physics>
+      <Physics debug>
         <CollidersScene />
         {isMobile && !isResizing && (
           <>

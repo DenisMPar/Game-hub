@@ -11,9 +11,9 @@ export function CollidersScene() {
     0.9 + responsiveRatio * 0.1,
     minFrontColliderPosition
   );
-  const minSidesColliderPosition = 3;
+  const minSidesColliderPosition = 2.5;
   const sideCollidersMobilePosition = Math.max(
-    3.5 + responsiveRatio * 0.1,
+    3 + responsiveRatio * 0.1,
     minSidesColliderPosition
   );
   return (
