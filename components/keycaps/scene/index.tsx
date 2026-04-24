@@ -13,7 +13,7 @@ export function Scene() {
 
   useEffect(() => {
     if (!isMobile) {
-      camera.position.set(0, 0, 3.5);
+      camera.position.set(0, 0, 5);
     }
   }, [isMobile, camera]);
 

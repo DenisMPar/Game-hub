@@ -1,11 +1,11 @@
 .keycaps__container {
   position: absolute;
-  top: 0;
+  top: 5px;
   right: 0;
   width: 43vw;
-  height: 60px;
+  height: 65px;
   @media screen and (min-width: 768px) {
-    height: 80px;
+    height: 85px;
     width: 80vw;
     max-width: 619px;
     left: 50%;

@@ -5,9 +5,10 @@ import { Scene } from "../scene";
 export function KeyCapsCanvas() {
   return (
     <Canvas
+      orthographic
       camera={{
-        position: [0, 0, 3],
-        fov: 50,
+        position: [0, 0, 5],
+        zoom: 30,
       }}
     >
       <Scene />

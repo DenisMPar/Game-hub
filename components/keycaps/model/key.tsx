@@ -20,9 +20,10 @@ const modelDictionary = {
   v: "/v-key.glb",
   ctrl: "/ctrl-key.glb",
 };
+
 interface KeyGLTF extends GLTF {
-  nodes: { Cube: Mesh };
-  materials: { Material: MeshStandardMaterial };
+  nodes: Record<string, Mesh>;
+  materials: Record<string, MeshStandardMaterial>;
 }
 
 export function KeyModel({ variant, ...props }: KeyProps) {
@@ -34,6 +35,10 @@ export function KeyModel({ variant, ...props }: KeyProps) {
   const minimumScale = 0.6;
   const responsiveValue = 0.6 * responsiveRatio;
   const mobileScale = Math.max(responsiveValue, minimumScale);
+
+  const meshEntries = Object.values(nodes).filter(
+    (node): node is Mesh => node.isMesh
+  );
 
   function addImpulse() {
     if (keyRef.current) {
@@ -66,7 +71,7 @@ export function KeyModel({ variant, ...props }: KeyProps) {
       onClick={addImpulse}
       {...props}
       dispose={null}
-      rotation={[degToRad(90), degToRad(145), 0]}
+      rotation={[degToRad(90), degToRad(325), 0]}
       scale={isMobile ? mobileScale : 0.8}
     >
       <RigidBody
@@ -76,13 +81,19 @@ export function KeyModel({ variant, ...props }: KeyProps) {
         restitution={0.3}
         gravityScale={isMobile ? 1 : 2}
       >
-        <mesh geometry={nodes.Cube.geometry} material={materials.Material} />
+        {meshEntries.map((mesh) => (
+          <mesh
+            key={mesh.name}
+            geometry={mesh.geometry}
+            material={mesh.material}
+            position={mesh.position}
+          />
+        ))}
       </RigidBody>
     </group>
   );
 }
 
-// Only preload keys shared across all devices; desktop-only keys (c, v, ctrl) load on demand
 useGLTF.preload("/w-key.glb");
 useGLTF.preload("/a-key.glb");
 useGLTF.preload("/s-key.glb");
