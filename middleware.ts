@@ -2,15 +2,23 @@ import { AccessDataType, getAccessData, refreshAccessData } from "@/lib/igdb-tok
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
-  const origin = request.headers.get("origin");
-  const referer = request.headers.get("referer");
-  const allowedOrigin = request.nextUrl.origin;
+  const secFetchSite = request.headers.get("sec-fetch-site");
 
-  const isCrossOrigin = origin && origin !== allowedOrigin;
-  const hasSuspiciousReferer = referer && !referer.startsWith(allowedOrigin);
-
-  if (isCrossOrigin || hasSuspiciousReferer) {
+  if (secFetchSite === "cross-site") {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  if (!secFetchSite) {
+    const origin = request.headers.get("origin");
+    const referer = request.headers.get("referer");
+    const allowedOrigin = request.nextUrl.origin;
+
+    const isCrossOrigin = origin && origin !== allowedOrigin;
+    const hasSuspiciousReferer = referer && !referer.startsWith(allowedOrigin);
+
+    if (isCrossOrigin || hasSuspiciousReferer) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
   }
 
   let accessData = getAccessData();
