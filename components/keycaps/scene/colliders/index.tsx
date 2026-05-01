@@ -19,9 +19,7 @@ export function CollidersScene() {
   return (
     <>
       {/* back Collider */}
-      <CuboidCollider args={[8, 3, 0.3]} position={[0, 2, 0]}>
-        <meshBasicMaterial color="#000" />
-      </CuboidCollider>
+      <CuboidCollider args={[8, 3, 0.3]} position={[0, 2, 0]} />
       {/* front collider */}
       <CuboidCollider
         args={[8, 3, 0.3]}
