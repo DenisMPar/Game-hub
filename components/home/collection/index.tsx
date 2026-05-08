@@ -1,6 +1,7 @@
 "use client";
 import { GameCard } from "@/components/game-card";
 import { useGameCollectionStore } from "@/lib/state";
+import { useHydration } from "@/hooks/use-hydration";
 import { EmptyCollectionComponent } from "./empty";
 import classes from "./index.module.css";
 import { HydratingCollectionComponent } from "./hydrating";
@@ -9,7 +10,7 @@ import { SortGames } from "./filter";
 export function GamesCollection() {
   const collection = useGameCollectionStore((state) => state.collection);
   const collectionHasGames = collection.length > 0;
-  const hydrated = useGameCollectionStore((state) => state.hydrated);
+  const hydrated = useHydration();
 
   return (
     <>

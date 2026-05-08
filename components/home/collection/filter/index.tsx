@@ -2,12 +2,13 @@
 
 import { ToggleButton } from "@/components/ui/toggle";
 import { useGameCollectionStore } from "@/lib/state";
+import { useHydration } from "@/hooks/use-hydration";
 import { Skeleton } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import classes from "./index.module.css";
 export function SortGames() {
   const collection = useGameCollectionStore((state) => state.collection);
-  const hydrated = useGameCollectionStore((state) => state.hydrated);
+  const hydrated = useHydration();
   const sortByLastAdded = useGameCollectionStore(
     (state) => state.sortByLastAdded
   );

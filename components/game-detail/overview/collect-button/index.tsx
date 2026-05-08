@@ -3,11 +3,12 @@ import { PrimaryButton } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { GameDetail } from "@/lib/api";
 import { useGameCollectionStore } from "@/lib/state";
+import { useHydration } from "@/hooks/use-hydration";
 import { Skeleton } from "@mui/material";
 
 export function CollectButton({ gameData }: { gameData: GameDetail }) {
   const collection = useGameCollectionStore((state) => state.collection);
-  const hydrated = useGameCollectionStore((state) => state.hydrated);
+  const hydrated = useHydration();
   const isCollected = collection.some((game) => game.id === gameData.id);
   const addGame = useGameCollectionStore((state) => state.addGame);
   const { toast } = useToast();

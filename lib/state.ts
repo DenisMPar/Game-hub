@@ -16,8 +16,6 @@ interface GameSaved {
 }
 export interface GameCollectionStore {
   collection: GameSaved[];
-  hydrated: boolean;
-  setHydrated: () => void;
   addGame: (game: GameSaved) => void;
   sortByLastAdded: () => void;
   sortByReleaseDate: (order: "asc" | "desc") => void;
@@ -27,8 +25,6 @@ export const useGameCollectionStore = create<GameCollectionStore>()(
   persist(
     (set) => ({
       collection: [],
-      hydrated: false,
-      setHydrated: () => set({ hydrated: true }),
       addGame: (game: GameSaved) =>
         set((state) => ({ collection: [game, ...state.collection] })),
       sortByLastAdded: () =>
@@ -52,13 +48,7 @@ export const useGameCollectionStore = create<GameCollectionStore>()(
     }),
     {
       name: "gameCollection",
-      onRehydrateStorage: () => {
-        return (state, error) => {
-          if (!error) {
-            state?.setHydrated();
-          }
-        };
-      },
+      skipHydration: true,
     }
   )
 );
