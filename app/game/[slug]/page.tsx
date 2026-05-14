@@ -1,13 +1,22 @@
 import { GameDetailPageComponent } from "@/components/game-detail";
 import { getGameDetails } from "@/lib/api";
 import { Metadata } from "next";
+import { headers } from "next/headers";
+
+async function getOrigin(): Promise<string> {
+  const headersList = await headers();
+  const host = headersList.get("host") || "localhost:3000";
+  const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+  return `${protocol}://${host}`;
+}
 
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const gameData = await getGameDetails(params.slug);
+  const [{ slug }, origin] = await Promise.all([params, getOrigin()]);
+  const gameData = await getGameDetails(slug, origin);
   return {
     title: gameData ? `${gameData.name} - Game Hub` : "Game Hub",
     description: gameData
@@ -19,9 +28,10 @@ export async function generateMetadata({
 export default async function GameDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const gameData = await getGameDetails(params.slug);
+  const [{ slug }, origin] = await Promise.all([params, getOrigin()]);
+  const gameData = await getGameDetails(slug, origin);
 
   return <GameDetailPageComponent gameData={gameData} />;
 }

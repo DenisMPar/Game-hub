@@ -1,8 +1,13 @@
 const development = process.env.NODE_ENV === "development";
-const BASE_API_URL = development
-  ? "http://localhost:3000/api"
-  : process.env.NEXT_PUBLIC_BASE_API_URL;
-export async function fetchApiGet(path: RequestInfo) {
+
+function resolveBaseUrl(serverOrigin?: string): string {
+  if (!development) return process.env.NEXT_PUBLIC_BASE_API_URL || "";
+  if (typeof window === "undefined") return `${serverOrigin}/api`;
+  return "/api";
+}
+
+export async function fetchApiGet(path: RequestInfo, serverOrigin?: string) {
+  const BASE_API_URL = resolveBaseUrl(serverOrigin);
   if (!BASE_API_URL) {
     throw new Error("Missing BASE_API_URL");
   }
@@ -58,9 +63,9 @@ export interface GameDetail {
   summary: string;
 }
 
-export async function getGameDetails(slug: string): Promise<GameDetail | null> {
+export async function getGameDetails(slug: string, serverOrigin?: string): Promise<GameDetail | null> {
   try {
-    const res = await fetchApiGet(`/game/${slug}`);
+    const res = await fetchApiGet(`/game/${slug}`, serverOrigin);
     return res?.data?.[0] ?? null;
   } catch (error) {
     console.error("Error fetching game details:", error);
